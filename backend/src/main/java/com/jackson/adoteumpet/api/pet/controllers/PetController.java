@@ -21,7 +21,7 @@ public class PetController {
     @Autowired
     private PetMapper petMapper;
 
-    @GetMapping("/pets")
+    @GetMapping("/api/pets")
     public List<PetResponse> findAll() {
 
         var pets = petRepossitory.findAll();
