@@ -6,7 +6,9 @@ import java.util.List;
 import com.jackson.adoteumpet.api.pet.dtos.PetResponse;
 import com.jackson.adoteumpet.api.pet.mappers.PetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jackson.adoteumpet.core.models.Pet;
