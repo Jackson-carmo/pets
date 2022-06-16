@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 public class AdocaoController {
 
@@ -18,7 +20,7 @@ public class AdocaoController {
 
     @PostMapping("/api/adocoes")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public AdocaoResponse create(@RequestBody AdocaoRequest adocaoRequest) {
+    public AdocaoResponse create(@RequestBody @Valid AdocaoRequest adocaoRequest) {
         return adocaoService.create(adocaoRequest);
     }
 }
