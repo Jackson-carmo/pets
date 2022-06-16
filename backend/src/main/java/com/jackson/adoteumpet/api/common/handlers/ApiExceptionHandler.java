@@ -1,5 +1,7 @@
 package com.jackson.adoteumpet.api.common.handlers;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.jackson.adoteumpet.api.common.dtos.ErrorResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,8 @@ import java.util.stream.Stream;
 
 @RestControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
+
+    private final PropertyNamingStrategies.SnakeCaseStrategy snakeCaseStrategy = new PropertyNamingStrategies.SnakeCaseStrategy();
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
@@ -43,7 +47,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     private Map<String, List<String>> convertFieldErrors(List<FieldError> fieldErrors) {
         var errors = new HashMap<String, List<String>>();
         fieldErrors.stream().forEach(fieldError -> {
-            var field = fieldError.getField();
+            var field = snakeCaseStrategy.translate(fieldError.getField());
             if (errors.containsKey(field)){
                 errors.get(field).add(fieldError.getDefaultMessage());
             } else {
